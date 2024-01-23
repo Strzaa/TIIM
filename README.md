@@ -16,6 +16,9 @@ docker-compose up -d
 
 Przy zmianach w repo  
 
+---
+
+
 
 **Łączenie do bazy w pg_admin* 
 
@@ -28,6 +31,9 @@ Maintenence database: car_rent_DB
 Username: admin  
 
 Password: pass  
+
+---
+
 
 
 **UWAGA: NIE PUSHOWAĆ FOLDERU POSTGRES DO REPO*
