@@ -8,32 +8,37 @@
 4. Uruchom poprzez bash plik ./startup.sh, nadaj uprawniena jeżeli wymagane
    Skrypt powinien sam wszystko ustawić oraz uruchomić kontenery
 
-Jeżeli wszystko przebiegło pomyślnie to od tej pory wystarczy robić  
+Jeżeli wszystko przebiegło pomyślnie to od tej pory wystarczy robić
 
-docker-compose down  
+docker-compose down
 
-docker-compose up -d  
+docker-compose up -d
 
-Przy zmianach w repo  
-
----
-
-
-
-**Łączenie do bazy w pg_admin* 
-
-Add New Seerver -> Name: postgres -> Connection ->  
-
-Host name / address: postgres  
-
-Maintenence database: car_rent_DB  
-
-Username: admin  
-
-Password: pass  
+Przy zmianach w repo
 
 ---
 
+**Łączenie do bazy w pg_admin*
 
+Add New Seerver -> Name: postgres -> Connection ->
+
+Host name / address: postgres
+
+Maintenence database: car_rent_DB
+
+Username: admin
+
+Password: pass
+
+---
 
 **UWAGA: NIE PUSHOWAĆ FOLDERU POSTGRES DO REPO*
+
+---
+
+
+
+DB: http://localhost:5051/
+Django: http://localhost:8000/
+
+React: http://localhost:3000/
