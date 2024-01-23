@@ -1,0 +1,39 @@
+version: '3.0'
+
+# (172.21.0.2) , 3, 4
+
+services:
+  django:
+    build:
+      context: ./wyp_backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./wyp_backend:/code
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+    restart: always
+    
+  pg_admin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@example.com
+      PGADMIN_DEFAULT_PASSWORD: pass
+    volumes:
+      - ./postgres/pg_admin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: always

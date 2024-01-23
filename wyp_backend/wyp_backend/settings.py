@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'car_rent_DB',
         'USER': 'admin',
         'PASSWORD': 'pass',
-        'HOST': 'localhost',
+        'HOST': 'postgres',
         'PORT': '5432',
     }
 }
