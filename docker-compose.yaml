@@ -7,6 +7,7 @@ services:
     build:
       context: ./wyp_backend
       dockerfile: Dockerfile
+    container_name: django
     ports:
       - "8000:8000"
     volumes:
@@ -19,6 +20,7 @@ services:
     build:
       context: ./postgres
       dockerfile: Dockerfile
+    container_name: postgres
     ports:
       - "5432:5432"
     volumes:
@@ -27,6 +29,7 @@ services:
     
   pg_admin:
     image: dpage/pgadmin4:latest
+    container_name: pg_admin
     ports:
       - "5051:80"
     environment:
@@ -37,3 +40,16 @@ services:
     depends_on:
       - postgres
     restart: always
+
+  frontend:
+    container_name: frontend
+    build: ./react
+    volumes:
+      - ./react/src:/usr/src/app/src
+      - ./react/public:/usr/src/app/public
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    depends_on:
+      - django
