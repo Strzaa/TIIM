@@ -1,6 +1,8 @@
 version: '3.0'
 
 # (172.21.0.2) , 3, 4
+# aktualizacja strony react, nie dziala u Huberta
+# aktualizacja zmian w django sprawdzic
 
 services:
   django:
