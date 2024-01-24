@@ -34,11 +34,11 @@ stages:
         command: 'login'
 
     - bash: |
-        docker build -t $DJANGO_NAME:$DJANGO_TAG ./python/
+        docker build -t $DJANGO_NAME:$DJANGO_TAG ./wyp_backend/
         docker push $DJANGO_NAME:$DJANGO_TAG
-        docker build -t $REACT_NAME:$REACT_TAG ./python/
+        docker build -t $REACT_NAME:$REACT_TAG ./react/
         docker push $REACT_NAME:$REACT_TAG
-        docker build -t $POSTGRES_NAME:$POSTGRES_TAG ./python/
+        docker build -t $POSTGRES_NAME:$POSTGRES_TAG ./postgres/
         docker push $POSTGRES_NAME:$POSTGRES_TAG
 
 - stage: deploy
