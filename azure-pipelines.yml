@@ -56,4 +56,4 @@ stages:
         chmod 600 $(secure_file.secureFilePath)
         ssh -o StrictHostKeyChecking=no -i $(secure_file.secureFilePath) strzaa@20.83.148.157 "
               docker ps -qa | xargs -r docker stop && docker ps -qa | xargs -r docker rm &&
-              docker-compose pull && docker-compose up -d "
+              cd /home/strzaa/TIIM && ./startup.sh"
