@@ -12,4 +12,4 @@ EXPOSE 3000
 
 RUN chmod -R 777 /usr/src/app
 
-CMD ["nmp", "start"]
+CMD ["npm", "start"]
