@@ -1,0 +1,58 @@
+version: '3.0'
+
+# (172.21.0.2) , 3, 4
+# aktualizacja strony react, nie dziala u Huberta
+# aktualizacja zmian w django sprawdzic
+
+services:
+  django:
+    image: strzaa/django_app:django-1.0
+    container_name: django
+    ports:
+      - "8000:8000"
+    volumes:
+      - wyp_backend:/code
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: strzaa/postgres_app:postgres-1.0
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    restart: always
+    
+  pg_admin:
+    image: dpage/pgadmin4:latest
+    container_name: pg_admin
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@example.com
+      PGADMIN_DEFAULT_PASSWORD: pass
+    volumes:
+      - postgres_pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: always
+
+  frontend:
+    container_name: frontend
+    image: strzaa/react_app:react-1.0
+    volumes:
+      - react:/usr/src/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    depends_on:
+      - django
+
+volumes:
+  react:
+  postgres_pgadmin:
+  postgres:
+  wyp_backend:

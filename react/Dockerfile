@@ -10,6 +10,6 @@ COPY . .
  
 EXPOSE 3000
 
-RUN chmod -R 777 /usr/src/app/*
- 
-CMD [ "npm", "start" ]
+RUN chmod -R 777 /usr/src/app
+
+CMD ["nmp", "start"]
