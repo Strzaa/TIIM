@@ -55,7 +55,7 @@ stages:
     - task: DownloadSecureFile@1
       name: secure_file
       inputs:
-        secureFile: '.key'
+        secureFile: 'SSHkey.pem'
 
     - bash: |
         chmod 600 $(secure_file.secureFilePath)
