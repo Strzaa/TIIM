@@ -6,7 +6,7 @@ version: '3.0'
 
 services:
   django:
-    image: strzaa/django_app:django-2.0
+    image: strzaa/django_app:django-1.0
     container_name: django
     ports:
       - "8000:8000"
@@ -17,7 +17,7 @@ services:
     restart: always
 
   postgres:
-    image: strzaa/postgres_app:postgres-2.0
+    image: strzaa/postgres_app:postgres-1.0
     container_name: postgres
     ports:
       - "5432:5432"
@@ -41,7 +41,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: strzaa/react_app:react-2.0
+    image: strzaa/react_app:react-1.0
     volumes:
       - react:/usr/src/app
       - /app/node_modules
