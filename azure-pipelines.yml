@@ -59,6 +59,6 @@ stages:
 
     - bash: |
         chmod 600 $(secure_file.secureFilePath)
-        ssh -o StrictHostKeyChecking=no -i $(secure_file.secureFilePath) strzaa@23.101.138.188 "
+        ssh -o StrictHostKeyChecking=no -i $(secure_file.secureFilePath) strzaa@20.83.148.157 "
               docker ps -qa | xargs -r docker stop && docker ps -qa | xargs -r docker rm &&
               docker-compose up -d "
