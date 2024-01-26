@@ -46,11 +46,6 @@ stages:
   - job: deployToAzure
     displayName: 'Deploy to Azure VM'
     steps:
-
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'ToDOckerHub'
-        command: 'login'
       
     - task: DownloadSecureFile@1
       name: secure_file
@@ -61,4 +56,4 @@ stages:
         chmod 600 $(secure_file.secureFilePath)
         ssh -o StrictHostKeyChecking=no -i $(secure_file.secureFilePath) strzaa@20.83.148.157 "
               docker ps -qa | xargs -r docker stop && docker ps -qa | xargs -r docker rm &&
-              docker-compose up -d "
+              docker-compose pull && docker-compose up -d "
