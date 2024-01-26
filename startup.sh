@@ -4,6 +4,7 @@ mkdir -p ./postgres/data
 mkdir -p ./postgres/pg_admin
 chmod -R 777 ./postgres/data
 chmod -R 777 ./postgres/pg_admin
+# jakby byl permission denied w pg_admin to komenda wyzej
 docker-compose build
 docker-compose up -d
 sleep 10s
