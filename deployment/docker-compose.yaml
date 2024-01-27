@@ -10,8 +10,8 @@ services:
     container_name: django
     ports:
       - "8000:8000"
-    volumes:
-      - wyp_backend:/code
+    #volumes:
+    # - wyp_backend:/code
     depends_on:
       - postgres
     restart: always
@@ -42,9 +42,9 @@ services:
   frontend:
     container_name: frontend
     image: strzaa/react_app:react-1.0
-    volumes:
-      - react:/usr/src/app
-      - /app/node_modules
+    #volumes:
+    #  - react:/usr/src/app
+    #  - /app/node_modules
     ports:
       - "3000:3000"
     stdin_open: true
@@ -52,7 +52,7 @@ services:
       - django
 
 volumes:
-  react:
+  # react:
   postgres_pgadmin:
   postgres:
-  wyp_backend:
+  # wyp_backend:
