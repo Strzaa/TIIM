@@ -3,11 +3,11 @@ import '../App.css'
 import { Przycisk } from './Przycisk'
 import './HeroSection.css'
 
-export default function HeroSection3() {
+export default function HeroSection6() {
   return (
     <div className = 'kontener'>
-        <video src='/filmy/video1.mp4' autoPlay loop />
-        <h1>Zwiastun</h1>
+        <video src='/filmy/video1.mp4' autoPlay loop muted />
+        <h1>Informacje</h1>
         
         <div className = 'hero-btns'>
             <Przycisk className = 'btn' stylPrzycisku={'btn--outline'}
