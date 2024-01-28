@@ -1,0 +1,60 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  DJANGO_NAME: strzaa/django_app
+  DJANGO_TAG: django-1.0
+  REACT_NAME: strzaa/react_app
+  REACT_TAG: react-1.0
+  POSTGRES_NAME: strzaa/postgres_app
+  POSTGRES_TAG: postgres-1.0
+
+stages:
+- stage: Build
+  jobs:
+  - job: build_and_push_image
+    displayName: 'Build and Push Docker Image'
+    steps:
+    
+    - task: DockerInstaller@0
+      inputs:
+        dockerVersion: '17.09.0-ce'
+          
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'ToDOckerHub'
+        command: 'login'
+
+    - bash: |
+        docker build -t $DJANGO_NAME:$DJANGO_TAG ./wyp_backend/
+        docker push $DJANGO_NAME:$DJANGO_TAG
+        docker build -t $REACT_NAME:$REACT_TAG ./react/
+        docker push $REACT_NAME:$REACT_TAG
+        docker build -t $POSTGRES_NAME:$POSTGRES_TAG ./postgres/
+        docker push $POSTGRES_NAME:$POSTGRES_TAG
+
+- stage: deploy
+  jobs:
+  - job: deployToAzure
+    displayName: 'Deploy to Azure VM'
+    steps:
+      
+    - task: DownloadSecureFile@1
+      name: secure_file
+      inputs:
+        secureFile: 'SSHkey.pem'
+
+    - bash: |
+        chmod 600 $(secure_file.secureFilePath)
+        scp  -o StrictHostKeyChecking=no -i $(secure_file.secureFilePath) ./deployment/docker-compose.yaml strzaa@20.83.148.157:.
+        ssh -o StrictHostKeyChecking=no -i $(secure_file.secureFilePath) strzaa@20.83.148.157 "
+              docker ps -qa | xargs -r docker stop && docker ps -qa | xargs -r docker rm &&
+              docker-compose pull && docker-compose up -d"

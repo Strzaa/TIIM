@@ -1,0 +1,74 @@
+[
+    {
+        "model": "zarzadzanie_pojazdami.pojazd",
+        "pk": 1,
+        "fields": {
+            "marka": "Lamborghini",
+            "model": "Huracán EVO",
+            "rok_produkcji": 2022,
+            "cena": 4200.00,
+            "kategoria": "sportowy",
+            "moc": 640,
+            "opis": "Lamborghini przy projektowaniu modelu Huracan Evo skupiło się na dopracowaniu istniejącej konstrukcji. Celem włoskiego producenta było poprawienie parametrów auta, z jednoczesnym uzyskaniem jeszcze większej ilości adrenaliny z jego prowadzenia. Model Huracan bazuje na wersji Performante, dzięki czemu m.in. uzyskuje dodatkowe 30KM i 40Nm względem „zwykłego” Huracana. To oczywiście nie wszystkie zmiany jakie przeszedł ten samochód.\n\nEvo to również poprawa aerodynamiki. Wpływają na to m.in. przebudowany zderzak przedni, boczne wloty powietrza oraz tylny pas wraz z modyfikacją wydechu.\nWydech również przypomina konstrukcyjnie ten z wersji Performante, dzięki czemu doznania akustyczne w czasie jazdy, które już były na najwyższym poziomie, są jeszcze bardziej ekscytujące. Lamborghini od pewnego czasu nie kojarzy się jednak wyłącznie z niesamowitym przyśpieszeniem, głośnym wydechem czy przykuwającym wzrok designem. Chociaż wszystkie te cechy Huracan’a Evo opisują doskonale, to producent zadbał również o wybitne prowadzenie idące w parze z pozostałymi parametrami. Wpływa na to między innym nowa odsłona centralnej jednostki przetwarzania danych o typowo włoskiej nazwie „Lamborghini Dinamica Veicolo Integrata” – w skrócie LDVI. Jej zadaniem jest prawidłowa integracja wszystkich pokładowych systemów dbających o prowadzenie pojazdu.\n\nW Lamborghini Huracan Evo udoskonalono również napęd i przekierowywanie momentu obrotowego na poszczególne koła. O odpowiednie zatrzymywanie auta z dużych prędkości (Evo rozpędza się do 325km/h) zadbają z kolei karbonowo-ceramiczne hamulce. Do dyspozycji kierowcy jest automatyczna skrzynia biegów i trzy tryby jazdy – Strada, Sport i Corsa. Jazdę naszym egzemplarzem ułatwi opcjonalne unoszenie przedniej osi.\n\nZmiany dotknęły również wnętrza pojazdu, które zostało unowocześnione, zachowując jednak nastrój typowy dla pojazdów włoskiej marki. Pierwszą i najważniejszą zmianę, jaką przeszło wnętrze Lamborghini dostrzegamy patrząc na konsolę środkową. Znajdziemy tam obecnie 8,4 calowy ekran dotykowy, który można obsługiwać także przyciskami na kierownicy, gestami lub głosowo.\n\nNasza wypożyczalnia samochodów oferuje egzemplarz w niebieskim lakierze „Blu Mehit” w połączeniu z kontrastującymi żółtymi zaciskami (elementy żółtego koloru „Giallo Taurus” znajdziemy również w środku pojazdu) i czarnymi felgami, który z pewnością wyróżni się w każdym miejscu. Lamborghini Huracan Evo to udoskonalona postać świetnego już samochodu. Łączy wszystkie cechy supersamochodu – jest głośne, bardzo szybkie, krzykliwe i bardzo precyzyjne w prowadzeniu. Wyróżnia się również na tle konkurencji pod względem silnika, pozostając wiernym klasycznej, wolnossącej jednostce V10 bez turbodoładowania. Wszystko to sprawia, że Huracan to wyjątkowy i unikalny samochód. Wynajem Lamborghini Huracan Evo z pewnością dostarczy każdemu wielu niezapomnianych wrażeń.",
+            "nr_rejestracyjny": "WI200MG",
+            "skrzynia": "automatyczna",
+            "naped": "4x4",
+            "przyspieszenie": 2.9,
+            "pojemnosc": 5.2,
+            "przebieg": 51200,
+            "zdjecie1": "img/WI200MG_1.jpg",
+            "zdjecie2": "img/WI200MG_2.jpg",
+            "zdjecie3": "img/WI200MG_3.jpg",
+            "zdjecie4": "img/WI200MG_4.jpg",
+            "zdjecie5": "img/WI200MG_5.jpg"
+        }
+    },
+    {
+        "model": "zarzadzanie_pojazdami.pojazd",
+        "pk": 2,
+        "fields": {
+            "marka": "Audi",
+            "model": "RS3",
+            "rok_produkcji": 2023,
+            "cena": 1200,
+            "kategoria": "sportowy",
+            "moc": 400,
+            "opis": "Poszerzone nadwozie, 19-calowe felgi, agresywna linia oraz wydłużone końcówki wydechów. Na pierwszy rzut oka wiemy już, że ten samochód to prawdziwy „killer” drogowy. Dodając do tego genialne brzmienie wyjątkowej jednostki jaką jest 2,5 litrowy turbodoładowany, pięciocylindrowy silnik o mocy 400 koni mechanicznych możemy być pewni, że czas spędzony z samochodem będzie pełny dzikich emocji.\n\nAudi RS3 w obecnej wersji na równi z Mercedesem A45s dzierży miano najmocniejszego i najszybszego hot-hatch’a na rynku. Jednak to producent z Ingolstadt jako pierwszy na rynku wypuścił przedstawiciela tej klasy oferującego 400KM. Obecna wersja zyskała dodatkowe 20Nm i oferuje obecnie równe 500 Nm. RS3 W najnowszej odsłonie wykazuje mniejszą podsterowność od poprzednika. Zgodnie również z obecnymi trendami na rynku, samochód oferuje system RS Torque Rear, czyli możliwość odłączenia napędu na przód. Dzięki niemu mamy możliwość poczuć się jak w tylnonapędowym aucie (chociaż trzeba przyznać, że nawet w normalnym trybie samochód wyraźnie nabrał bardziej tylnonapędowej charakterystyki).\n\nNiemiecka marka słynie z doskonałego łączenia świata osiągów i codziennej użyteczności.\nRS3 nie jest wyjątkiem. To przykład prawdziwie sportowego auta, które świetnie sprawdzi się jako „daily car” i zaoferuje wiele dodatków uprzyjemniających jazdę. Na pokładzie znajdziemy m.in. dwustrefową klimatyzację, podgrzewane fotele, bezprzewodowy Apple Car Play i Android Auto, nagłośnienie Bang&Olufsen oraz szyberdach.\n\nTen wyjątkowo zgrabny sedan ze znaczkiem „RS” rozpędza się do setki w 3.8 sekundy, konkurując przy tym ze sportowymi autami z wyższych segmentów.\nNapęd quattro na 4 koła z kolei zapewnia stabilność i komfort podczas jazdy w każdych, nawet najgorszych warunkach.\n\nFlagowy przedstawiciel serii RS, który zaspokaja żądze najbardziej wymagających fanów motoryzacji. Czysta przyjemność i adrenalina!",
+            "nr_rejestracyjny": "WI374MH",
+            "skrzynia": "automatyczna",
+            "naped": "4x4",
+            "przyspieszenie": 3.8,
+            "pojemnosc": 2.5,
+            "przebieg": 23600,
+            "zdjecie1": "img/WI374MH_1.jpg",
+            "zdjecie2": "img/WI374MH_2.jpg",
+            "zdjecie3": "img/WI374MH_3.jpg",
+            "zdjecie4": "img/WI374MH_4.jpg",
+            "zdjecie5": "img/WI374MH_5.jpg"
+        }
+    },
+    {
+        "model": "zarzadzanie_pojazdami.pojazd",
+        "pk": 3,
+        "fields": {
+            "marka": "Audi",
+            "model": "A8",
+            "rok_produkcji": 2020,
+            "cena": 1450,
+            "kategoria": "osobowy",
+            "moc": 340,
+            "opis": "Obecna generacja Audi A8 wraz ze swoją premierą, została zdecydowanie najnowocześniejszą limuzyną dostępną na rynku. Jest autem naprawdę wszechstronnym, zaskakuje zwinnością w mieście, pewnością prowadzenia oraz doskonałymi osiągami. Za kierownicą flagowej limuzyny Audi czujemy otaczający nas luksus. To czego jednak z pewnością nie odczujemy, to rozmiary tego auta.\n\nTo zasługa systemu czterech kół skrętnych, dzięki którym ta ponad 5 metrowa konstrukcja, skręca prawie tak dobrze jak auto klasy kompaktowej. O nasze bezpieczeństwo dba napęd na wszystkie osie, który dostajemy w standardzie (w odróżnieniu od pozostałych niemieckich rywali, czyli Mercedesa klasy S oraz BMW Serii 7). Audi zawsze również wyróżniało się wysoką jakością wykonania wnętrza. W przypadku modelu A8, producent z Ingolstadt wzbił się na jeszcze wyższy poziom, pokonując przy tym konkurencję.\n\n3-litrowy silnik benzynowy gwarantuje więcej niż zadowalające osiągi. 340 KM oraz 500 Nm przekłada się na świetną elastyczność w każdym zakresie prędkości. Pneumatyczne zawieszenie (również w standardzie) świetnie „filtruje” wszystkie nierówności na drodze, co przekłada się na doskonały komfort podróżowania.\n\nAudi A8 zaskakuje również na… zakrętach! Oczywiście nie jest to samochód stworzony do dynamicznego pokonywania zakrętów, mimo to radzi sobie z tym zaskakująco dobrze, pomimo swoich rozmiarów i masy (ponad 2 tony!)\n\nAudi A8 to niesamowicie dopracowana konstrukcja. Na jej pokładzie znajdziemy mnóstwo asystentów, dbających o nasze bezpieczeństwo. Podróżujący z tyłu (oraz z przodu) skorzystają z foteli wyposażonych w funkcje masażu, a dzięki wysuwanemu tabletowi umieszczonemu w tylnym podłokietniku, mogą kontrolować większość funkcji dostępnych w samochodzie. Niemiecka limuzyna spełni się w każdej sytuacji, zapewniając przy tym bardzo wysoki poziom bezpieczeństwa oraz komfortu wszystkim podróżującym. Dłuższe podróże tym samochodem to czysta przyjemność.",
+            "nr_rejestracyjny": "WL9309T",
+            "skrzynia": "automatyczna",
+            "naped": "4x4",
+            "przyspieszenie": 5.7,
+            "pojemnosc": 3.0,
+            "przebieg": 13500,
+            "zdjecie1": "img/WL9309T_1.jpg",
+            "zdjecie2": "img/WL9309T_2.jpg",
+            "zdjecie3": "img/WL9309T_3.jpg",
+            "zdjecie4": "img/WL9309T_4.jpg",
+            "zdjecie5": "img/WL9309T_5.jpg"
+        }
+    }
+]

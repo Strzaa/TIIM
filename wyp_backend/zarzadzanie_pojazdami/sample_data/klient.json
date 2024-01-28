@@ -1,0 +1,24 @@
+[
+    {
+        "model": "zarzadzanie_pojazdami.klient",
+        "pk": 1,
+        "fields": {
+            "imie": "John",
+            "nazwisko": "Doe",
+            "data_urodzenia": "1990-01-15",
+            "email": "john.doe@example.com",
+            "pesel": "12345678901"
+        }
+    },
+    {
+        "model": "zarzadzanie_pojazdami.klient",
+        "pk": 2,
+        "fields": {
+            "imie": "Jane",
+            "nazwisko": "Smith",
+            "data_urodzenia": "1985-05-20",
+            "email": "jane.smith@example.com",
+            "pesel": "98765432109"
+        }
+    }
+]

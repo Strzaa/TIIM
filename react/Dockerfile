@@ -9,5 +9,7 @@ RUN npm install
 COPY . .
  
 EXPOSE 3000
- 
-CMD [ "npm", "start" ]
+
+RUN chmod -R 777 /usr/src/app
+
+CMD ["npm", "start"]

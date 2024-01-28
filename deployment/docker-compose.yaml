@@ -6,27 +6,23 @@ version: '3.0'
 
 services:
   django:
-    build:
-      context: ./wyp_backend
-      dockerfile: Dockerfile
+    image: strzaa/django_app:django-1.0
     container_name: django
     ports:
       - "8000:8000"
-    volumes:
-      - ./wyp_backend:/code
+    #volumes:
+    # - wyp_backend:/code
     depends_on:
       - postgres
     restart: always
 
   postgres:
-    build:
-      context: ./postgres
-      dockerfile: Dockerfile
+    image: strzaa/postgres_app:postgres-1.0
     container_name: postgres
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres/data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     restart: always
     
   pg_admin:
@@ -38,20 +34,25 @@ services:
       PGADMIN_DEFAULT_EMAIL: user@example.com
       PGADMIN_DEFAULT_PASSWORD: pass
     volumes:
-      - ./postgres/pg_admin:/var/lib/pgadmin
+      - postgres_pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
     restart: always
 
   frontend:
     container_name: frontend
-    build: ./react
-    volumes:
-      - ./react/src:/usr/src/app/src
-      - ./react/public:/usr/src/app/public
-      - /app/node_modules
+    image: strzaa/react_app:react-1.0
+    #volumes:
+    #  - react:/usr/src/app
+    #  - /app/node_modules
     ports:
       - "3000:3000"
     stdin_open: true
     depends_on:
       - django
+
+volumes:
+  # react:
+  postgres_pgadmin:
+  postgres:
+  # wyp_backend:

@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import dodaj_pojazd
-from .views import DodajPojazdAPIView, WszystkiePojazdyAPIView, WyszukajPojazdyAPIView
+from .views import DodajPojazd, WyszukiwarkaPojazdow, WylistujMarki, WylistujKategorie, UsunPojazd
 
 urlpatterns = [
-    path('dodaj_pojazd/', dodaj_pojazd, name='dodaj_pojazd'),
-    path('api/dodaj_pojazd/', DodajPojazdAPIView.as_view(), name='api_dodaj_pojazd'),
-    path('api/wszystkie_pojazdy/', WszystkiePojazdyAPIView.as_view(), name='api_wszystkie_pojazdy'),
-    path('api/wyszukaj_pojazdy/', WyszukajPojazdyAPIView.as_view(), name='api_wyszukaj_pojazdy'),
+    path('dodaj_pojazd/', DodajPojazd.as_view(), name='dodaj_pojazd'),
+    path('wyszukaj_pojazdy/', WyszukiwarkaPojazdow.as_view(), name='wyszukaj_pojazdy'),
+    path('wylistuj_marki/', WylistujMarki.as_view(), name='wylistuj_marki'),
+    path('wylistuj_kategorie/', WylistujKategorie.as_view(), name='wylistuj_kategorie'),
+    path('usun_pojazd/<str:nr_rejestracyjny>/', UsunPojazd.as_view(), name='usun_pojazd'),
 ]
