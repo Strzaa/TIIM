@@ -8,6 +8,9 @@ import Rejestracja from './komponenty/strony/Rejestracja'
 import Logowanie from './komponenty/strony/Logowanie'
 import Zwiastun from './komponenty/strony/Zwiastun'
 import Auta from './komponenty/strony/Auta'
+import Lamborgini from './komponenty/strony/Lamborgini';
+import Porche from './komponenty/strony/Porche';
+import Ferrari from './komponenty/strony/Ferrari';
 function App() {
   return (
     <>
@@ -21,6 +24,9 @@ function App() {
         <Route path ='/Logowanie' exact Component={Logowanie}/>
         <Route path ='/Auta' exact Component={Auta}/>
         <Route path ='/Zwiastun' exact Component={Zwiastun}/>
+        <Route path ='/Lamborghini' exact Component={Lamborgini}/>
+        <Route path ='/Porche' exact Component={Porche}/>
+        <Route path ='/Ferrari' exact Component={Ferrari}/>
       </Routes>
     </Router>
     </>

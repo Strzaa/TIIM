@@ -2,35 +2,35 @@ import React from 'react'
 import CardItem from './CardItem'
 import './Cards.css'
 
-function Cards() {
+function CardsMarki() {
   return (
-    <div className='cards'>
-        <h1>Nasze najpopularniejsze produkty</h1>
-        <div className='cards-kontener'>
+    <div className='cards2'>
+        <h2>Marki Naszych Samochodów</h2>
+        <div className='cards-kontener2'>
             <div className='cards-wrapper'>
             <ul className='cards-items'>
                 <CardItem 
                 src='/zdjecia/img0.jpg'
-                text='Canyenne'
-                label='Porche'
-                path='/uslugi'
+                text='Porche'
+                label=''
+                path='/Porche'
                 />
             </ul>
             <ul className='cards-items'>
                 <CardItem 
                 src='/zdjecia/img1.jpg'
-                text='SF90'
-                label='Ferrari'
-                path='/uslugi'
+                text='Ferrari'
+                label=''
+                path='/Ferrari'
                 />
 
             </ul>
             <ul className='cards-items'>
                 <CardItem 
                 src='/zdjecia/img2.jpg'
-                text='The Essenza SCV12'
-                label='Lamborghini'
-                path='/uslugi'
+                text='Lamborghini'
+                label=''
+                path='/Lamborghini'
                 />
             </ul>
             </div>
@@ -39,4 +39,4 @@ function Cards() {
   )
 }
 
-export default Cards
+export default CardsMarki
