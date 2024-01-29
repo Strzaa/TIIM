@@ -1,9 +1,11 @@
 from rest_framework import generics, status
-from .models import Pojazd
-from .serializers import PojazdSerializer, ObrazekSerializer
+from .models import Pojazd, Wypozyczenie
+from .serializers import PojazdSerializer, ObrazekSerializer, WypozyczenieSerializer, WypozyczenieKlientaSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 
 
 class DodajPojazd(generics.CreateAPIView):
@@ -30,17 +32,7 @@ class WyszukiwarkaPojazdow(generics.ListAPIView):
     queryset = Pojazd.objects.all()
     serializer_class = PojazdSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['marka', 'cena', 'kategoria', 'moc']
-
-class UsunPojazd(generics.DestroyAPIView):
-    queryset = Pojazd.objects.all()
-    serializer_class = PojazdSerializer
-    lookup_field = 'nr_rejestracyjny'  # Ustaw pole, które ma być używane jako identyfikator
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response({'status': 'success'}, status=status.HTTP_200_OK)
+    filterset_fields = ['marka', 'cena', 'kategoria', 'moc', 'id','nr_rejestracyjny']
 
 class WylistujMarki(APIView):
     def get(self, request):
@@ -53,6 +45,7 @@ class WylistujKategorie(APIView):
         return Response(kategoria)
 
 class UsunPojazd(generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Pojazd.objects.all()
     serializer_class = PojazdSerializer
     lookup_field = 'nr_rejestracyjny'
@@ -62,3 +55,72 @@ class UsunPojazd(generics.DestroyAPIView):
             return super().destroy(request, *args, **kwargs)
         except Exception as e:
             return Response({'status': 'error', 'message': f'Wystąpił błąd: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class Wyloguj(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        try:
+            # Pobierz token użytkownika
+            token = Token.objects.get(user=request.user)
+
+            # Zmień token na nowy (wygasły)
+            token.delete()
+            Token.objects.create(user=request.user)
+
+            # Możesz również dodać odpowiednie informacje do odpowiedzi, jeśli to konieczne
+            return Response({'status': 'success', 'message': 'Wylogowano pomyślnie.'}, status=status.HTTP_200_OK)
+        except Token.DoesNotExist:
+            return Response({'status': 'error', 'message': 'Brak tokenu do wylogowania.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+class WypozyczPojazd(generics.CreateAPIView):
+    serializer_class = WypozyczenieSerializer
+    # permission_classes = [IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        try:
+            wypozyczenie = Wypozyczenie.objects.create(
+                klient=request.user,
+                pojazd_id=request.data.get('pojazd'),
+                data_wypozyczenia=request.data.get('data_wypozyczenia'),
+                ilosc_dni=request.data.get('ilosc_dni'),
+                status_wypozyczenia='Rezerwacja',
+                czy_oplacone=False,
+            )
+
+            # Tutaj możesz dodać dodatkową logikę, np. aktualizację dostępności pojazdu
+
+            serializer = self.get_serializer(wypozyczenie)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        except Exception as e:
+            return Response({'status': 'error', 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+class WyszukajWypozyczenia(generics.ListAPIView):
+    queryset = Wypozyczenie.objects.all()
+    serializer_class = WypozyczenieSerializer
+
+class WypozyczeniaKlienta(generics.ListAPIView):
+    serializer_class = WypozyczenieKlientaSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Wypozyczenie.objects.filter(klient=self.request.user)
+
+
+class CzyZalogowany(APIView):
+    def get(self, request):
+        try:
+            auth_header = request.headers.get('Authorization', '')
+            token = auth_header.split(' ')[1]
+            Token.objects.get(key=token)
+
+            return Response({'czy_zalogowany': True}, status=status.HTTP_200_OK)
+        except Token.DoesNotExist:
+            return Response({'czy_zalogowany': False}, status=status.HTTP_404_NOT_FOUND)
+        except IndexError:
+            return Response({'czy_zalogowany': False}, status=status.HTTP_401_UNAUTHORIZED)
+        except Exception as e:
+            return Response({'czy_zalogowany': False}, status=status.HTTP_400_BAD_REQUEST)

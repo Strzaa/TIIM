@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-bk+ec0==oe(j!bz@z)mxi(7=vw8$knpn6g*9*uuk1_pmxu*k-a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["20.83.148.157", "localhost", "0.0.0.0"]
+ALLOWED_HOSTS = ["20.83.148.157", "localhost", "192.168.0.100", "192.168.56.1", "127.0.0.1", "172.25.162.17", "192.168.8.148", "0.0.0.0"]
 
 # Application definition
 
@@ -36,20 +36,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'zarzadzanie_pojazdami',
+    'corsheaders',
     'rest_framework',
-    'django_filters'
+    'rest_framework.authtoken',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'wyp_backend.urls'
 
 TEMPLATES = [
@@ -86,6 +88,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -127,3 +130,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://192.168.8.148:8000",
+]
