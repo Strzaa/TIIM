@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Pojazd
+from .models import Pojazd, Wypozyczenie
 from django.core.validators import MaxLengthValidator, MinLengthValidator, MaxValueValidator, MinValueValidator
 from datetime import datetime
 
@@ -24,11 +24,13 @@ class PojazdSerializer(serializers.ModelSerializer):
     rok_produkcji = serializers.IntegerField(
         validators=[
             MinValueValidator(limit_value=1900, message='Rok produkcji nie może być wcześniejszy niż 1900.'),
-            MaxValueValidator(limit_value=datetime.now().year, message='Rok produkcji nie może być późniejszy niż obecny rok.'),
+            MaxValueValidator(limit_value=datetime.now().year,
+                              message='Rok produkcji nie może być późniejszy niż obecny rok.'),
         ])
 
     cena = serializers.DecimalField(
-        max_digits=10, decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Cena nie może być ujemna.')])
+        max_digits=10, decimal_places=2,
+        validators=[MinValueValidator(limit_value=0, message='Cena nie może być ujemna.')])
 
     moc = serializers.IntegerField(
         validators=[
@@ -58,3 +60,25 @@ class PojazdSerializer(serializers.ModelSerializer):
 
 class ObrazekSerializer(serializers.Serializer):
     obrazek = serializers.ImageField()
+
+
+class WypozyczenieSerializer(serializers.ModelSerializer):
+    klient_imie = serializers.ReadOnlyField(source='klient.first_name')
+    klient_nazwisko = serializers.ReadOnlyField(source='klient.last_name')
+    pojazd_marka = serializers.ReadOnlyField(source='pojazd.marka')
+    pojazd_model = serializers.ReadOnlyField(source='pojazd.model')
+    pojazd_numer_rejestracyjny = serializers.ReadOnlyField(source='pojazd.nr_rejestracyjny')
+
+    class Meta:
+        model = Wypozyczenie
+        fields = ['klient_imie', 'klient_nazwisko', 'pojazd_marka', 'pojazd_model', 'pojazd_numer_rejestracyjny', 'data_wypozyczenia', 'ilosc_dni', 'status_wypozyczenia', 'czy_oplacone']
+
+
+class WypozyczenieKlientaSerializer(serializers.ModelSerializer):
+    pojazd_marka = serializers.ReadOnlyField(source='pojazd.marka')
+    pojazd_model = serializers.ReadOnlyField(source='pojazd.model')
+
+    class Meta:
+        model = Wypozyczenie
+        fields = ['pojazd_marka', 'pojazd_model', 'data_wypozyczenia', 'ilosc_dni', 'status_wypozyczenia',
+                  'czy_oplacone']

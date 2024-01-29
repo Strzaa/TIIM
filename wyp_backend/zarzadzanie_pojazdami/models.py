@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime, date
+from django.contrib.auth.models import User, AbstractUser
 
 
 class Pojazd(models.Model):
@@ -40,13 +41,6 @@ class Pojazd(models.Model):
     zdjecie5 = models.ImageField(upload_to='img/')
 
 
-class Klient(models.Model):
-    imie = models.CharField(max_length=50)
-    nazwisko = models.CharField(max_length=50)
-    #data_urodzenia = models.DateField( validators=[MinValueValidator(date(1900, 1, 1)), MaxValueValidator(date.today())], blank=False, null=True)
-    email = models.EmailField(unique=True, blank=False, null=True)
-    pesel = models.CharField(max_length=11, unique=True, blank=False, null=True)
-
 class Wypozyczenie(models.Model):
     REZERWACJA = 'Rezerwacja'
     WYPOZYCZENIE = 'Wypożyczenie'
@@ -58,9 +52,9 @@ class Wypozyczenie(models.Model):
         (ZAKONCZONY, 'Zakończone'),
     ]
 
-    klient = models.ForeignKey(Klient, on_delete=models.CASCADE)
+    klient = models.ForeignKey(User, on_delete=models.CASCADE)
     pojazd = models.ForeignKey(Pojazd, on_delete=models.CASCADE)
     data_wypozyczenia = models.DateField(blank=False, null=True)
-    #ilosc_dni = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000)])
-    status_wypozyczenia = models.CharField(max_length=50, choices=STATUS_CHOICES)
+    ilosc_dni = models.IntegerField(default=1)
+    status_wypozyczenia = models.CharField(max_length=50, choices=STATUS_CHOICES,  default='Rezerwacja')
     czy_oplacone = models.BooleanField(default=False)
