@@ -44,13 +44,13 @@ export default function HeroSection2() {
 
   useEffect(() => {
     // Pobieranie marek
-    fetch('http://django:8000/zarzadzanie_pojazdami/wylistuj_marki/')
+    fetch('http://localhost:8000/zarzadzanie_pojazdami/wylistuj_marki/')
       .then(response => response.json())
       .then(data => setBrands(data))
       .catch(error => console.error('Error:', error));
 
     // Pobieranie rodzajów
-    fetch('http://django:8000/zarzadzanie_pojazdami/wylistuj_kategorie/')
+    fetch('http://localhost:8000/zarzadzanie_pojazdami/wylistuj_kategorie/')
       .then(response => response.json())
       .then(data => setTypes(data))
       .catch(error => console.error('Error:', error));
@@ -64,7 +64,7 @@ export default function HeroSection2() {
     const brandQuery = selectedBrand ? `&marka=${selectedBrand}` : '';
     const typeQuery = selectedType ? `&kategoria=${selectedType}` : '';
 
-    fetch(`http://django:8000/zarzadzanie_pojazdami/wyszukaj_pojazdy/?format=json${brandQuery}${typeQuery}`)
+    fetch(`http://localhost:8000/zarzadzanie_pojazdami/wyszukaj_pojazdy/?format=json${brandQuery}${typeQuery}`)
       .then(response => response.json())
       .then(data => setVehicles(data))
       .catch(error => console.error('Error:', error));
