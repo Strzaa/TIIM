@@ -1,6 +1,8 @@
+from django.contrib.auth.models import User
 from rest_framework import generics, status
 from .models import Pojazd, Wypozyczenie
-from .serializers import PojazdSerializer, ObrazekSerializer, WypozyczenieSerializer, WypozyczenieKlientaSerializer
+from .serializers import PojazdSerializer, ObrazekSerializer, WypozyczenieSerializer, WypozyczenieKlientaSerializer, \
+    RejestracjaKlientaSerializer, EdytujStatusWypozyczeniaSerializer, WypozyczenieUsunSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -156,4 +158,40 @@ class CzyZalogowany(APIView):
         except Exception as e:
             return Response({'czy_zalogowany': False}, status=status.HTTP_400_BAD_REQUEST)
 
+
+class RejestracjaKlienta(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RejestracjaKlientaSerializer
+
+class EdytujStatusWypozyczenia(generics.UpdateAPIView):
+    queryset = Wypozyczenie.objects.all()
+    serializer_class = EdytujStatusWypozyczeniaSerializer
+    lookup_field = 'id'
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
+class UsunWypozyczenie(generics.DestroyAPIView):
+    queryset = Wypozyczenie.objects.all()
+    serializer_class = WypozyczenieUsunSerializer
+    permission_classes = [IsAuthenticated]
+
+    def usun(self, request, *args, **kwargs):
+        instance = self.get_object()
+        print("siema")
+        if instance.klient == request.user:
+            if instance.status_wypozyczenia == 'Rezerwacja' and not instance.czy_oplacone:
+                instance.delete()
+                return Response({'status': 'success', 'message': 'Wypożyczenie usunięte'}, status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response({'status': 'error', 'message': 'Nie można usunąć opłaconego wypożyczenia'}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'status': 'error', 'message': 'Nie masz uprawnień do usunięcia tego wypożyczenia'}, status=status.HTTP_403_FORBIDDEN)
 

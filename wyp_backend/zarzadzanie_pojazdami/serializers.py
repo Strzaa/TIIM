@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Pojazd, Wypozyczenie
 from django.core.validators import MaxLengthValidator, MinLengthValidator, MaxValueValidator, MinValueValidator
@@ -75,6 +76,12 @@ class WypozyczenieSerializer(serializers.ModelSerializer):
         fields = ['klient_imie', 'klient_nazwisko', 'email', 'pojazd_marka', 'pojazd_model', 'pojazd_numer_rejestracyjny', 'data_wypozyczenia', 'ilosc_dni', 'status_wypozyczenia', 'czy_oplacone']
 
 
+class WypozyczenieUsunSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wypozyczenie
+        fields = '__all__'
+
+
 class WypozyczenieKlientaSerializer(serializers.ModelSerializer):
     pojazd_marka = serializers.ReadOnlyField(source='pojazd.marka')
     pojazd_model = serializers.ReadOnlyField(source='pojazd.model')
@@ -83,3 +90,27 @@ class WypozyczenieKlientaSerializer(serializers.ModelSerializer):
         model = Wypozyczenie
         fields = ['pojazd_marka', 'pojazd_model', 'data_wypozyczenia', 'ilosc_dni', 'status_wypozyczenia',
                   'czy_oplacone']
+
+
+class RejestracjaKlientaSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'email', 'first_name', 'last_name']
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            password=validated_data['password'],
+            email=validated_data['email'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name']
+        )
+        return user
+
+class EdytujStatusWypozyczeniaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wypozyczenie
+        fields = ['status_wypozyczenia']
+
