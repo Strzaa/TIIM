@@ -10,6 +10,6 @@ COPY entrypoint2.sh .
 
 EXPOSE 8000
 
-RUN chmod +x entrypoint2.sh
+RUN chmod -R 777 /code
 
 CMD ["./entrypoint2.sh"]

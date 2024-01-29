@@ -2,11 +2,21 @@
     padding: 4rem;
     background: #fff;
   }
+
+  .cards2 {
+    padding: 4rem;
+    background: transparent;
+  }
   
   h1 {
     text-align: center;
   }
   
+  h2 {
+    text-align: center;
+    color: #fff;
+  }
+
   .cards-kontener {
     display: flex;
     flex-flow: column;
@@ -16,6 +26,15 @@
     margin: 0 auto;
   }
   
+ .cards-kontener2 {
+    display: table-row;
+    flex-flow: row;
+    align-items: center;
+    max-width: 1120px;
+    width: 90%;
+    margin: 0 auto;
+  } 
+
   .cards-wrapper {
     position: relative;
     display: flex;

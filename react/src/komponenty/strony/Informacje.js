@@ -1,6 +1,10 @@
 import React from 'react'
 import '../../App.css'
+import '../HeroSection6'
+import HeroSection6 from '../HeroSection6'
 
 export default function Informacje(){
-    return <h1 className='Informacje'>Informacje</h1>
+    return(
+        <HeroSection6/>
+        )
 }
