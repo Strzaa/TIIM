@@ -17,7 +17,7 @@ export default function HeroSection8() {
               <Przycisk className = 'btn' stylPrzycisku={'btn--outline'}
             rozmiarPrzycisku={'btn--large'}
             linkPrzycisku={'/Auta'}>
-              Powrót</Przycisk>
+              Powrót  </Przycisk>
         </div>
     </div>
   )

@@ -1,42 +1,27 @@
-import React from 'react'
-import CardItem from './CardItem'
-import './Cards.css'
+import React from 'react';
+import CardItem from './CardItem';
+import './Cards.css';
 
-function Cards() {
+function Cards({ vehicles }) {
   return (
     <div className='cards'>
-        <h1>Nasze najpopularniejsze produkty</h1>
-        <div className='cards-kontener'>
-            <div className='cards-wrapper'>
-            <ul className='cards-items'>
-                <CardItem 
-                src='/zdjecia/img0.jpg'
-                text='Canyenne'
-                label='Porche'
-                path='/uslugi'
-                />
+      <div className='cards-kontener'>
+        <div className='cards-wrapper'>
+          {vehicles.map((vehicle, index) => (
+            <ul className='cards-items' key={index}>
+              <CardItem 
+                src={vehicle.zdjecie1}
+                text={vehicle.model}
+                label={vehicle.marka}
+                path='/Rezerwacja'
+                id={vehicle.id}
+              />
             </ul>
-            <ul className='cards-items'>
-                <CardItem 
-                src='/zdjecia/img1.jpg'
-                text='SF90'
-                label='Ferrari'
-                path='/uslugi'
-                />
-
-            </ul>
-            <ul className='cards-items'>
-                <CardItem 
-                src='/zdjecia/img2.jpg'
-                text='The Essenza SCV12'
-                label='Lamborghini'
-                path='/uslugi'
-                />
-            </ul>
-            </div>
+          ))}
         </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Cards
+export default Cards;

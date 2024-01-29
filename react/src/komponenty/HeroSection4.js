@@ -1,33 +1,66 @@
-import React from 'react'
-import '../App.css'
-import { Przycisk } from './Przycisk'
-import './HeroSection.css'
+import React, { useState } from 'react';
+import '../App.css';
+import { Przycisk } from './Przycisk';
+import './HeroSection.css';
 
 export default function HeroSection4() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log('Próba logowania');
+
+    try {
+      const response = await fetch('http://localhost:8000/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', data.token); // Zapisanie tokena
+        console.log('Zalogowano pomyślnie');
+        window.location.href = '/'
+      } else {
+        console.error('Błąd logowania', data);
+      }
+    } catch (error) {
+      console.error('Błąd:', error);
+    }
+  };
+
   return (
-    <div className = 'kontener'>
-        <video src='/filmy/video1.mp4' autoPlay loop muted />
-        <h1>Logowanie</h1>
-        
-        <div className = 'hero-btns'>
-            <form>
-            <input
-              className='email-input'
-              name='email'
-              type='email'
-              placeholder='E-mail'
-            />
-          </form>
-          <form>
-            <input
-              className='haslo-input'
-              name='haslo'
-              type='password'
-              placeholder='Haslo'
-            />
-          </form>
-          <Przycisk className = 'btn--outline' stylPrzycisku={'btn--outline'} >Zaloguj sie</Przycisk>
-        </div>
+    <div className='kontener'>
+      <video src='/filmy/video1.mp4' autoPlay loop muted />
+      <h1>Logowanie</h1>
+
+      <div className='hero-btns'>
+        <form onSubmit={handleLogin}>
+          <input
+            className='username-input'
+            name='username'
+            type='text'
+            placeholder='Nazwa użytkownika'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            className='haslo-input'
+            name='haslo'
+            type='password'
+            placeholder='Hasło'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Przycisk type='submit' stylPrzycisku='btn--outline'>
+            Zaloguj się
+          </Przycisk>
+        </form>
+      </div>
     </div>
-  )
+  );
 }
