@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
+from django_filters import rest_framework as filters
 
 
 class DodajPojazd(generics.CreateAPIView):
@@ -34,6 +35,7 @@ class WyszukiwarkaPojazdow(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['marka', 'cena', 'kategoria', 'moc', 'id','nr_rejestracyjny']
 
+
 class WylistujMarki(APIView):
     def get(self, request):
         marki = Pojazd.objects.values_list('marka', flat=True).distinct()
@@ -43,6 +45,25 @@ class WylistujKategorie(APIView):
     def get(self, request):
         kategoria = Pojazd.objects.values_list('kategoria', flat=True).distinct()
         return Response(kategoria)
+
+
+class EdytujPojazd(generics.UpdateAPIView):
+    queryset = Pojazd.objects.all()
+    serializer_class = PojazdSerializer
+    # permission_classes = [IsAuthenticated]
+
+    lookup_field = 'nr_rejestracyjny'
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
 
 class UsunPojazd(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
@@ -98,9 +119,19 @@ class WypozyczPojazd(generics.CreateAPIView):
         except Exception as e:
             return Response({'status': 'error', 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
+class WypozyczenieFilter(filters.FilterSet):
+    email = filters.CharFilter(field_name='klient__email', lookup_expr='exact')
+
+    class Meta:
+        model = Wypozyczenie
+        fields = ['email']
+
 class WyszukajWypozyczenia(generics.ListAPIView):
     queryset = Wypozyczenie.objects.all()
     serializer_class = WypozyczenieSerializer
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = WypozyczenieFilter
 
 class WypozyczeniaKlienta(generics.ListAPIView):
     serializer_class = WypozyczenieKlientaSerializer
@@ -124,3 +155,5 @@ class CzyZalogowany(APIView):
             return Response({'czy_zalogowany': False}, status=status.HTTP_401_UNAUTHORIZED)
         except Exception as e:
             return Response({'czy_zalogowany': False}, status=status.HTTP_400_BAD_REQUEST)
+
+

@@ -65,13 +65,14 @@ class ObrazekSerializer(serializers.Serializer):
 class WypozyczenieSerializer(serializers.ModelSerializer):
     klient_imie = serializers.ReadOnlyField(source='klient.first_name')
     klient_nazwisko = serializers.ReadOnlyField(source='klient.last_name')
+    email = serializers.ReadOnlyField(source='klient.email')
     pojazd_marka = serializers.ReadOnlyField(source='pojazd.marka')
     pojazd_model = serializers.ReadOnlyField(source='pojazd.model')
     pojazd_numer_rejestracyjny = serializers.ReadOnlyField(source='pojazd.nr_rejestracyjny')
 
     class Meta:
         model = Wypozyczenie
-        fields = ['klient_imie', 'klient_nazwisko', 'pojazd_marka', 'pojazd_model', 'pojazd_numer_rejestracyjny', 'data_wypozyczenia', 'ilosc_dni', 'status_wypozyczenia', 'czy_oplacone']
+        fields = ['klient_imie', 'klient_nazwisko', 'email', 'pojazd_marka', 'pojazd_model', 'pojazd_numer_rejestracyjny', 'data_wypozyczenia', 'ilosc_dni', 'status_wypozyczenia', 'czy_oplacone']
 
 
 class WypozyczenieKlientaSerializer(serializers.ModelSerializer):
