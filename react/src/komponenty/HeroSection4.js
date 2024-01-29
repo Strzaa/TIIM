@@ -12,7 +12,7 @@ export default function HeroSection4() {
     console.log('Próba logowania');
 
     try {
-      const response = await fetch('http://20.83.148.157:8000/login/', {
+      const response = await fetch('http://django:8000/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

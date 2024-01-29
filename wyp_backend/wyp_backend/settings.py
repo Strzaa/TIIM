@@ -139,5 +139,6 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://192.168.8.148:8000",
+    "http://localhost:8000",
+    "http://django:8000",
 ]
