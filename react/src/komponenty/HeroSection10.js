@@ -24,7 +24,7 @@ export default function HeroSection10({ vehicle }) {
     };
 
     try {
-      const response = await fetch('http://django:8000/zarzadzanie_pojazdami/wypozycz_pojazd/', {
+      const response = await fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/wypozycz_pojazd/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
