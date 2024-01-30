@@ -2,7 +2,7 @@ from django.urls import path
 from .views import DodajPojazd, WyszukiwarkaPojazdow, WylistujMarki, WylistujKategorie, EdytujPojazd, UsunPojazd, \
     Wyloguj, \
     WypozyczPojazd, WyszukajWypozyczenia, WypozyczeniaKlienta, CzyZalogowany, RejestracjaKlienta, \
-    EdytujStatusWypozyczenia, UsunWypozyczenie
+    EdytujStatusWypozyczenia, UsunWypozyczenie, JakaGrupa
 
 urlpatterns = [
     path('dodaj_pojazd/', DodajPojazd.as_view(), name='dodaj_pojazd'),
@@ -31,7 +31,7 @@ urlpatterns = [
     path('wyszukaj_wypozyczenia/', WyszukajWypozyczenia.as_view(), name='wyszukaj_wypozyczenia'),
     # http://localhost:8000/zarzadzanie_pojazdami/wyszukaj_wypozyczenia/?email=k2@example.com
     # http://localhost:8000/zarzadzanie_pojazdami/wyszukaj_wypozyczenia/
-    path('wypozyczenia_klienta/', WypozyczeniaKlienta.as_view(), name='wyszukaj_wypozyczenia'),
+    path('wypozyczenia_klienta/', WypozyczeniaKlienta.as_view(), name='wypozyczenia_klienta'),
     path('edytuj_status_wypozyczenia/<int:id>/', EdytujStatusWypozyczenia.as_view(), name='edytuj_status_wypozyczenia'),
     # curl -X PUT -H "Content-Type: application/json" -d '{"status_wypozyczenia": "Wypożyczony"}' http://localhost:8000/zarzadzanie_pojazdami/edytuj_status_wypozyczenia/1/
     path('usun_wypozyczenie/<int:pk>/', UsunWypozyczenie.as_view(), name='usun_wypozyczenie'),
@@ -46,13 +46,8 @@ urlpatterns = [
     # curl -X POST -H "Authorization: Token ff1d26b07137060406d37f00ad48045a79361002" http://127.0.0.1:8000/wyloguj/
     path('rejestracja/', RejestracjaKlienta.as_view(), name='rejestracja_klienta'),
     path('czy_zalogowany/', CzyZalogowany.as_view(), name='wyszukaj_wypozyczenia'),
+    path('jaka_grupa/', JakaGrupa.as_view(), name='jaka_grupa'),
 ]
 
 # hasła użytkowników
 # passpasspass
-
-######  daty wolnych dni wypożyczenia dla konkretnego
-
-### grupy
-
-# Permission classes

@@ -37,5 +37,19 @@
             "is_active": true,
             "date_joined": "2024-01-03T12:00:00Z"
         }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "username": "pracownik",
+            "password": "pbkdf2_sha256$260000$8xs5JzmDN9ENUZ0RJkCwlb$p14REY7R5lW8PEZ83d+ihi2W/dFd/ZqsCjXBhi4ElMc=",
+            "is_superuser": true,
+            "first_name": "Pracownik",
+            "last_name": "Wypozyczalni",
+            "email": "pracownik@example.com",
+            "is_active": true,
+            "date_joined": "2024-01-04T12:00:00Z"
+        }
     }
 ]

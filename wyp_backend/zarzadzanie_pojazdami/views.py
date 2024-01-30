@@ -9,10 +9,25 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django_filters import rest_framework as filters
+from rest_framework.permissions import BasePermission
+from rest_framework.decorators import permission_classes
 
 
+# pobranie grup
+class Pracownik(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.groups.filter(name='Pracownik').exists()
+
+
+class Klient(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.groups.filter(name='Klient').exists()
+
+
+@permission_classes([Pracownik])
 class DodajPojazd(generics.CreateAPIView):
     serializer_class = PojazdSerializer
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         if 'obrazek' in request.FILES:
@@ -35,7 +50,7 @@ class WyszukiwarkaPojazdow(generics.ListAPIView):
     queryset = Pojazd.objects.all()
     serializer_class = PojazdSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['marka', 'cena', 'kategoria', 'moc', 'id','nr_rejestracyjny']
+    filterset_fields = ['marka', 'cena', 'kategoria', 'moc', 'id', 'nr_rejestracyjny']
 
 
 class WylistujMarki(APIView):
@@ -43,16 +58,18 @@ class WylistujMarki(APIView):
         marki = Pojazd.objects.values_list('marka', flat=True).distinct()
         return Response(marki)
 
+
 class WylistujKategorie(APIView):
     def get(self, request):
         kategoria = Pojazd.objects.values_list('kategoria', flat=True).distinct()
         return Response(kategoria)
 
 
+@permission_classes([Pracownik])
 class EdytujPojazd(generics.UpdateAPIView):
     queryset = Pojazd.objects.all()
     serializer_class = PojazdSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     lookup_field = 'nr_rejestracyjny'
 
@@ -67,6 +84,7 @@ class EdytujPojazd(generics.UpdateAPIView):
         serializer.save()
 
 
+@permission_classes([Pracownik])
 class UsunPojazd(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Pojazd.objects.all()
@@ -77,7 +95,8 @@ class UsunPojazd(generics.DestroyAPIView):
         try:
             return super().destroy(request, *args, **kwargs)
         except Exception as e:
-            return Response({'status': 'error', 'message': f'Wystąpił błąd: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'status': 'error', 'message': f'Wystąpił błąd: {str(e)}'},
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class Wyloguj(APIView):
@@ -85,22 +104,21 @@ class Wyloguj(APIView):
 
     def post(self, request, *args, **kwargs):
         try:
-            # Pobierz token użytkownika
             token = Token.objects.get(user=request.user)
-
-            # Zmień token na nowy (wygasły)
             token.delete()
             Token.objects.create(user=request.user)
 
-            # Możesz również dodać odpowiednie informacje do odpowiedzi, jeśli to konieczne
             return Response({'status': 'success', 'message': 'Wylogowano pomyślnie.'}, status=status.HTTP_200_OK)
         except Token.DoesNotExist:
             return Response({'status': 'error', 'message': 'Brak tokenu do wylogowania.'},
                             status=status.HTTP_400_BAD_REQUEST)
 
+
+
+@permission_classes([Klient])
 class WypozyczPojazd(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
     serializer_class = WypozyczenieSerializer
-    # permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         try:
@@ -113,13 +131,12 @@ class WypozyczPojazd(generics.CreateAPIView):
                 czy_oplacone=False,
             )
 
-            # Tutaj możesz dodać dodatkową logikę, np. aktualizację dostępności pojazdu
-
             serializer = self.get_serializer(wypozyczenie)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         except Exception as e:
             return Response({'status': 'error', 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class WypozyczenieFilter(filters.FilterSet):
@@ -129,12 +146,17 @@ class WypozyczenieFilter(filters.FilterSet):
         model = Wypozyczenie
         fields = ['email']
 
+
+@permission_classes([Pracownik])
 class WyszukajWypozyczenia(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Wypozyczenie.objects.all()
     serializer_class = WypozyczenieSerializer
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = WypozyczenieFilter
 
+
+@permission_classes([Klient])
 class WypozyczeniaKlienta(generics.ListAPIView):
     serializer_class = WypozyczenieKlientaSerializer
     permission_classes = [IsAuthenticated]
@@ -163,7 +185,10 @@ class RejestracjaKlienta(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RejestracjaKlientaSerializer
 
+
+@permission_classes([Pracownik])
 class EdytujStatusWypozyczenia(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Wypozyczenie.objects.all()
     serializer_class = EdytujStatusWypozyczeniaSerializer
     lookup_field = 'id'
@@ -178,6 +203,8 @@ class EdytujStatusWypozyczenia(generics.UpdateAPIView):
     def perform_update(self, serializer):
         serializer.save()
 
+
+@permission_classes([Klient])
 class UsunWypozyczenie(generics.DestroyAPIView):
     queryset = Wypozyczenie.objects.all()
     serializer_class = WypozyczenieUsunSerializer
@@ -189,9 +216,21 @@ class UsunWypozyczenie(generics.DestroyAPIView):
         if instance.klient == request.user:
             if instance.status_wypozyczenia == 'Rezerwacja' and not instance.czy_oplacone:
                 instance.delete()
-                return Response({'status': 'success', 'message': 'Wypożyczenie usunięte'}, status=status.HTTP_204_NO_CONTENT)
+                return Response({'status': 'success', 'message': 'Wypożyczenie usunięte'},
+                                status=status.HTTP_204_NO_CONTENT)
             else:
-                return Response({'status': 'error', 'message': 'Nie można usunąć opłaconego wypożyczenia'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'status': 'error', 'message': 'Nie można usunąć opłaconego wypożyczenia'},
+                                status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({'status': 'error', 'message': 'Nie masz uprawnień do usunięcia tego wypożyczenia'}, status=status.HTTP_403_FORBIDDEN)
+            return Response({'status': 'error', 'message': 'Nie masz uprawnień do usunięcia tego wypożyczenia'},
+                            status=status.HTTP_403_FORBIDDEN)
 
+
+class JakaGrupa(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user_groups = request.user.groups.all()
+        group_names = [group.name for group in user_groups]
+
+        return Response({'grupa': group_names}, status=status.HTTP_200_OK)
