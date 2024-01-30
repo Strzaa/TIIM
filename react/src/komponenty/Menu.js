@@ -10,6 +10,38 @@ function Menu() {
   const zamknijNawigator = () => stanKlikniecia(false);
   const [przycisk, stanPrzycisku] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userGroup, setUserGroup] = useState(null);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+    if (token) {
+      fetchUserGroup(token);
+    }
+  }, []);
+
+  const fetchUserGroup = async (token) => {
+    try {
+      const response = await fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/jaka_grupa/', {
+        headers: {
+          'Authorization': `Token ${token}`
+        }
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setUserGroup(data.grupa[0]); // Ustawiamy grupę użytkownika
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
+    window.location.reload();
+  };
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -83,7 +115,6 @@ function Menu() {
                 Kontakt
               </Link>
             </li>
-            {/* Warunkowe linki */}
             {!isLoggedIn && (
               <li className='podmiot-nawigatora1'>
                 <Link to='/Rejestracja' className='nav-links-mobile' onClick={zamknijNawigator}>
@@ -98,9 +129,21 @@ function Menu() {
                 </Link>
               </li>
             )}
+            {isLoggedIn && (
+              <li className='podmiot-nawigatora1'>
+                <Link to='/Zamowienia' className='nav-links-mobile' onClick={zamknijNawigator}>
+                  Twoje Wypozyczenia
+                </Link>
+              </li>
+            )}
+            {isLoggedIn && (
+              <li className='podmiot-nawigatora1'>
+                <Link onClick={handleLogout} to='/' className='nav-links-mobile' >
+                Wyloguj Się
+                </Link>
+              </li>
+            )}
           </ul>
-
-          {/* Warunkowe przyciski dla dużych ekranów */}
           {przycisk && !isLoggedIn && (
             <>
               <Przycisk className='btn--outline' stylPrzycisku='btn--outline' linkPrzycisku='/Rejestracja'>
@@ -111,6 +154,23 @@ function Menu() {
               </Przycisk>
             </>
           )}
+          {przycisk && isLoggedIn &&  (
+            <>
+            {userGroup == 'Pracownik' ?(
+            <Przycisk className='btn--outline' stylPrzycisku='btn--outline' linkPrzycisku='/Zarzadzanie'>
+                Zarzadzanie Systemem
+              </Przycisk>
+            ):(
+            <Przycisk className='btn--outline' stylPrzycisku='btn--outline' linkPrzycisku='/Zamowienia'>
+                Twoje Wypozyczenia
+              </Przycisk>
+                )}
+              <Przycisk onClick={handleLogout} className='btn--outline' stylPrzycisku='btn--outline'>
+                Wyloguj Się
+              </Przycisk>
+            </>
+          )
+          }
         </div>
       </nav>
     </>

@@ -6,26 +6,130 @@ position: fixed;
 z-index: -1;
 }
 
+.formularz input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+
+.Filtry {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.Filtry select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+.Filtry select:focus {
+    outline: none;
+    border-color: #333;
+}
+
+.tabelacss {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    color: #fff;
+  }
+  
+  .tabelacss th, .tabelacss td {
+    text-align: left;
+    padding: 10px;
+    background-color: #242424;
+  }
+  
+  .tabelacss th {
+    font-size: 20px;
+  }
+  
+  .tabelacss td {
+    font-size: 18px;
+  }
+  
+  .tabelacss thead {
+    border-bottom: 5px solid #fff;
+  }
+
+.datawybor{
+    margin-top: 0px;
+    gap: 10px;
+    margin-bottom: 15px;
+    background-color: #242424;
+    color: #fff;
+}
+
+
+.rezervacja-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    margin-top: 20px;
+  }
+  
+  .cards-wrapper {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .vehicle-details {
+    flex: 1;
+    background-color: #242424;
+    align-items: center;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+  }
+
+  .vehicle-details .datawybor {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc; 
+    font-size: 16px; 
+  }
+
+  .vehicle-details .btn {
+    width: 100%; 
+  }
+
+  .vehicle-details h2 {
+    font-size: 20px;
+  }
+
 .kontener{
-    /* background: url('imaages/img-home.jpg') center center/cover no-repeat; */
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
     object-fit: contain;
 }
 
 .kontener> h1{
-    color: #d3cbcb;
+    color: #fff;
     font-size:  50px;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .hero-btns{
-    margin-top:32px;
+    margin-top: 0px;
+    align-items: center;
 }
 .hero-btns .btn{
     margin:6px;

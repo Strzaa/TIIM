@@ -15,6 +15,9 @@ export default function HeroSection6() {
             linkPrzycisku={'/'}>
               Strona Głowna</Przycisk>
         </div>
+        <div>
+          <h1>Firma zalozona przez 4 kolegow ktorzy chca sie dorobic i przy okazji sie nie narobic</h1>
+        </div>
     </div>
   )
 }

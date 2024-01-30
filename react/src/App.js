@@ -9,6 +9,13 @@ import Logowanie from './komponenty/strony/Logowanie';
 import Zwiastun from './komponenty/strony/Zwiastun';
 import Auta from './komponenty/strony/Auta';
 import Rezerwacja from './komponenty/strony/Rezerwacja';
+import Zamowienia from './komponenty/strony/Zamowienia';
+import Zarzadzanie from './komponenty/strony/Zarzadzanie';
+import Dodanie from './komponenty/strony/Dodanie';
+import Edycja from './komponenty/strony/Edycja';
+import Usuniecie from './komponenty/strony/Usuniecie';
+import Zmiana from './komponenty/strony/Zmiana';
+import Usun from './komponenty/strony/Usun';
 
 function App() {
   return (
@@ -24,10 +31,16 @@ function App() {
           <Route path='/Auta' element={<Auta />} />
           <Route path='/Zwiastun' element={<Zwiastun />} />
           <Route path="/Rezerwacja/:id" element={<Rezerwacja />} />
+          <Route path = "/Zamowienia"  element={<Zamowienia/>}/>
+          <Route path = "/Zarzadzanie" element={<Zarzadzanie/>}/>
+          <Route path = "/Dodanie" element={<Dodanie/>}/>
+          <Route path = "/Edycja" element={<Edycja/>}/>
+          <Route path = "/Usuniecie" element={<Usuniecie/>}/>
+          <Route path="/Edycja/:id" element={<Zmiana />} />
+          <Route path="/Usuniecie/:id" element={<Usun />} />
         </Routes>
       </Router>
     </>
   );
 }
-
 export default App;

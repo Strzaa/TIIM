@@ -10,6 +10,7 @@
   
   h1 {
     text-align: center;
+    color: #fff;
   }
   
   h2 {
@@ -38,25 +39,27 @@
   .cards-wrapper {
     position: relative;
     display: flex;
-    flex-wrap: wrap; /* Dodano, aby umożliwić zawijanie kart */
-    justify-content: left; /* Wyśrodkowanie kart w rzędzie */
+    flex-wrap: wrap;
+    justify-content: left;
     align-items: center;
     margin: 20px 0 45px;
   }
   
   .cards-items {
   margin-bottom: 25px;
-  display: flex; /* Zapewnia, że elementy wewnątrz są wyświetlane jako flex-items */
+  display: flex;
+  color: #fff; 
 }
   
   .cards-item {
     display: flex;
     flex: 1;
     margin: 0 1rem;
-    border-radius: 10px;
+    border-radius: 20px;
     /*Zmiana rozmiarow karty*/
-    width: 450px;
-    height: 450px;
+    width: 400px;
+    height: 360px;
+
   }
   
   .cards-item-link {
@@ -69,7 +72,8 @@
     border-radius: 40px;
     overflow: hidden;
     text-decoration: none;
-    background-color: #fff;
+    background-color: #242422;
+    align-items: center;
   }
   
   .cards-item-pic-wrap {
@@ -122,7 +126,7 @@
   }
   
   .cards-item-text {
-    color: #252e48;
+    color: #fff;
     font-size: 18px;
     line-height: 24px;
   }

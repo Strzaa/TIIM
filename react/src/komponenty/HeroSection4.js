@@ -22,7 +22,7 @@ export default function HeroSection4() {
 
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem('token', data.token); // Zapisanie tokena
+        localStorage.setItem('token', data.token);
         console.log('Zalogowano pomyślnie');
         window.location.href = '/'
       } else {
@@ -39,7 +39,7 @@ export default function HeroSection4() {
       <h1>Logowanie</h1>
 
       <div className='hero-btns'>
-        <form onSubmit={handleLogin}>
+        <form className='formularz' onSubmit={handleLogin}>
           <input
             className='username-input'
             name='username'
@@ -56,7 +56,7 @@ export default function HeroSection4() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Przycisk type='submit' stylPrzycisku='btn--outline'>
+          <Przycisk  type='submit' stylPrzycisku='btn--primary'>
             Zaloguj się
           </Przycisk>
         </form>

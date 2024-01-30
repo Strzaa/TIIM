@@ -15,6 +15,11 @@ export default function HeroSection7() {
             linkPrzycisku={'/'}>
               Strona Głowna</Przycisk>
         </div>
+        <div>
+          <h1>Dzial obsługi klienta: 001-010-011</h1>
+          <h1>Dział obsługi klientów biznesowych: 001-010-011</h1>
+          <h1>Wspolpraca: 001-010-011</h1>
+          </div>
     </div>
   )
 }

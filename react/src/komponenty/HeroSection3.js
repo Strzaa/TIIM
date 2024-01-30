@@ -6,7 +6,7 @@ import './HeroSection.css'
 export default function HeroSection3() {
   return (
     <div className = 'kontener'>
-        <video src='/filmy/video1.mp4' autoPlay loop />
+        <video src='/filmy/video3.mp4' autoPlay loop />
         <h1>Zwiastun</h1>
         
         <div className = 'hero-btns'>

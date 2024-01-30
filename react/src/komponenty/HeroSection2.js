@@ -43,13 +43,11 @@ export default function HeroSection2() {
   const [selectedType, setSelectedType] = useState('');
 
   useEffect(() => {
-    // Pobieranie marek
     fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/wylistuj_marki/')
       .then(response => response.json())
       .then(data => setBrands(data))
       .catch(error => console.error('Error:', error));
 
-    // Pobieranie rodzajów
     fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/wylistuj_kategorie/')
       .then(response => response.json())
       .then(data => setTypes(data))
@@ -57,7 +55,7 @@ export default function HeroSection2() {
   }, []);
 
   useEffect(() => {
-    fetchVehicles(); // Wywołanie funkcji fetchVehicles przy każdej zmianie selectedBrand lub selectedType
+    fetchVehicles();
   }, [selectedBrand, selectedType]);
 
   const fetchVehicles = () => {
@@ -87,13 +85,12 @@ export default function HeroSection2() {
         <Przycisk className='btn' stylPrzycisku='btn--outline' rozmiarPrzycisku='btn--large' linkPrzycisku='/'>
           Strona Główna
         </Przycisk>
-
-        <ProductFilter options={brands} onOptionSelect={handleOptionSelect} filterType="brand" />
+        </div>
+        <ul className = 'Filtry'>
+        <ProductFilter options={brands}  onOptionSelect={handleOptionSelect} filterType="brand" />
         <ProductFilter options={types} onOptionSelect={handleOptionSelect} filterType="type" />
-
+        </ul>
         <Cards vehicles={vehicles} />
-        {/* <VehicleList vehicles={vehicles} /> */}
       </div>
-    </div>
   );
 }

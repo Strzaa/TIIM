@@ -13,9 +13,7 @@ export default function Rezerwacja() {
       navigate('/Logowanie');
       return;
     }
-
-    // Sprawdzenie, czy użytkownik jest zalogowany
-    fetch('http://192.168.8.148:8000/zarzadzanie_pojazdami/czy_zalogowany/', {
+    fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/czy_zalogowany/', {
       headers: {
         'Authorization': `Token ${token}`
       }
@@ -26,9 +24,7 @@ export default function Rezerwacja() {
         navigate('/Logowanie');
         return;
       }
-
-      // Pobranie danych pojazdu
-      fetch(`http://192.168.8.148:8000/zarzadzanie_pojazdami/wyszukaj_pojazdy/?format=json&id=${id}`)
+      fetch(`http://20.83.148.157:8000/zarzadzanie_pojazdami/wyszukaj_pojazdy/?format=json&id=${id}`)
         .then(response => response.json())
         .then(data => setVehicle(data))
         .catch(error => console.error('Error:', error));
@@ -39,5 +35,6 @@ export default function Rezerwacja() {
     });
   }, [id, navigate]);
 
-  return vehicle ? <HeroSection10 vehicle={vehicle} /> : <p>Ładowanie danych pojazdu...</p>;
+  return vehicle ? <HeroSection10 vehicle={vehicle} /> : <p>Ładowanie danych pojazdu</p>;
+  
 }

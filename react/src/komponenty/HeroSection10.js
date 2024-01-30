@@ -6,9 +6,10 @@ import './HeroSection.css';
 import Cards from './Cards';
 
 export default function HeroSection10({ vehicle }) {
-  const { id } = useParams(); // Pobieranie ID pojazdu z URL
+  const { id } = useParams();
   const [dataWypozyczenia, setDataWypozyczenia] = useState('');
   const [iloscDni, setIloscDni] = useState('');
+  const pojazd = vehicle[0];
 
   const wynajmijPojazd = async () => {
     const token = localStorage.getItem('token');
@@ -18,7 +19,7 @@ export default function HeroSection10({ vehicle }) {
     }
 
     const requestBody = {
-      pojazd: id, // Używanie ID z URL
+      pojazd: id,
       data_wypozyczenia: dataWypozyczenia,
       ilosc_dni: iloscDni
     };
@@ -49,15 +50,36 @@ export default function HeroSection10({ vehicle }) {
       <video src='/filmy/video1.mp4' autoPlay loop muted />
       <h1>Rezerwacja</h1>
 
-      <Cards vehicles={vehicle} />
+      <div className='rezervacja-wrapper'>
+        <div className='cards-wrapper'>
+          <Cards vehicles={[pojazd]} />
+        </div>
 
-      <div className='hero-btns'>
-        <input type='date' value={dataWypozyczenia} onChange={(e) => setDataWypozyczenia(e.target.value)} />
-        <input type='number' value={iloscDni} placeholder='Ilość dni' onChange={(e) => setIloscDni(e.target.value)} />
+        <div className='vehicle-details'>
+          <h2>Marka: {pojazd.marka}</h2>
+          <h2>Model: {pojazd.model}</h2>
+          <h2>Rok produkcji: {pojazd.rok_produkcji}</h2>
+          <h2>Moc: {pojazd.moc} KM</h2>
+          <h2>Przyspieszenie: {pojazd.przyspieszenie} s</h2>
+          <h2>Pojemność silnika: {pojazd.pojemnosc} L</h2>
+          <h2>Przebieg: {pojazd.przebieg} km</h2>
+          <h2>Numer rejestracyjny: {pojazd.nr_rejestracyjny}</h2>
+          <h2>Kategoria: {pojazd.kategoria}</h2>
+          <h2>Cena: {pojazd.cena} zł/dzień</h2>
+          <div className='hero-btns'>
+        <input type='date' className='datawybor' value={dataWypozyczenia} onChange={(e) => setDataWypozyczenia(e.target.value)} />
+        <input type='number' className='datawybor' value={iloscDni} placeholder='Ilość dni' onChange={(e) => setIloscDni(e.target.value)} />
         <Przycisk className='btn' stylPrzycisku='btn--outline' rozmiarPrzycisku='btn--large' onClick={wynajmijPojazd}>
           Wynajmij
         </Przycisk>
+        <Przycisk className='btn' stylPrzycisku='btn--outline' rozmiarPrzycisku='btn--large' linkPrzycisku={'/Auta'}>
+          Powrót
+        </Przycisk>
       </div>
+        </div>
+      </div>
+
+      
     </div>
   );
 }
