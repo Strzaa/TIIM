@@ -19,11 +19,6 @@ class Pracownik(BasePermission):
         return request.user.groups.filter(name='Pracownik').exists()
 
 
-class Klient(BasePermission):
-    def has_permission(self, request, view):
-        return request.user.groups.filter(name='Klient').exists()
-
-
 @permission_classes([Pracownik])
 class DodajPojazd(generics.CreateAPIView):
     serializer_class = PojazdSerializer
@@ -115,7 +110,7 @@ class Wyloguj(APIView):
 
 
 
-@permission_classes([Klient])
+
 class WypozyczPojazd(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = WypozyczenieSerializer
@@ -156,7 +151,6 @@ class WyszukajWypozyczenia(generics.ListAPIView):
     filterset_class = WypozyczenieFilter
 
 
-@permission_classes([Klient])
 class WypozyczeniaKlienta(generics.ListAPIView):
     serializer_class = WypozyczenieKlientaSerializer
     permission_classes = [IsAuthenticated]
@@ -204,7 +198,6 @@ class EdytujStatusWypozyczenia(generics.UpdateAPIView):
         serializer.save()
 
 
-@permission_classes([Klient])
 class UsunWypozyczenie(generics.DestroyAPIView):
     queryset = Wypozyczenie.objects.all()
     serializer_class = WypozyczenieUsunSerializer
