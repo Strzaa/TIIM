@@ -16,8 +16,13 @@ export default function HeroSection6() {
               Strona Głowna</Przycisk>
         </div>
         <div>
-          <h1>Firma zalozona przez 4 kolegow ktorzy chca sie dorobic i przy okazji sie nie narobic</h1>
-        </div>
+        <h1>JAK PRACUJEMY</h1>
+            <p>Wypożyczalnia Zygzak to dynamicznie rozwijająca się firma, która oferuje szeroki wybór samochodów w atrakcyjnych cenach.</p>
+            <p>Naszym celem jest zapewnienie klientom komfortu i satysfakcji podczas podróży.</p>
+            <p>Dzięki naszemu doświadczeniu oraz profesjonalnej obsłudze, staramy się sprostać oczekiwaniom nawet najbardziej wymagających kierowców.</p>
+            <p>Dbamy o wysoką jakość naszych pojazdów oraz zapewniamy elastyczne warunki wynajmu, dostosowane do potrzeb każdego klienta.</p>
+            <p>Zapraszamy do skorzystania z naszych usług i przeżycia niezapomnianej podróży z Wypożyczalnią Zygzak!</p>
+      </div>
     </div>
   )
 }

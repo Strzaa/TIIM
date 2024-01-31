@@ -16,10 +16,23 @@ export default function HeroSection7() {
               Strona Głowna</Przycisk>
         </div>
         <div>
-          <h1>Dzial obsługi klienta: 001-010-011</h1>
-          <h1>Dział obsługi klientów biznesowych: 001-010-011</h1>
-          <h1>Wspolpraca: 001-010-011</h1>
-          </div>
+    <h2>Wypożyczalnia Samochodów "Zygzak"</h2>
+
+    <p><strong>Adres:</strong> ul. Przykładowa 123, 00-000 Miasto</p>
+
+    <p><strong>Telefon:</strong> +48 123 456 789</p>
+
+    <p><strong>E-mail:</strong> info@wypozyczalnia-zygzak.pl</p>
+
+    <p><strong>Godziny otwarcia:</strong></p>
+    <ul>
+        <li>Poniedziałek - Piątek: 8:00 - 18:00</li>
+        <li>Sobota: 9:00 - 15:00</li>
+        <li>Niedziela: Zamknięte</li>
+    </ul>
+
+    <p>Zapraszamy do kontaktu telefonicznego lub mailowego w celu rezerwacji samochodu lub uzyskania dodatkowych informacji na temat naszych usług. Nasz zespół obsługi klienta służy pomocą w każdej sprawie związanej z wynajmem samochodów.</p>
+</div>
     </div>
   )
 }
