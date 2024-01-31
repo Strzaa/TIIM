@@ -9,6 +9,7 @@ import Logowanie from './komponenty/strony/Logowanie';
 import Zwiastun from './komponenty/strony/Zwiastun';
 import Auta from './komponenty/strony/Auta';
 import Rezerwacja from './komponenty/strony/Rezerwacja';
+import Platnosc from './komponenty/strony/Platnosc';
 import Zamowienia from './komponenty/strony/Zamowienia';
 import Zarzadzanie from './komponenty/strony/Zarzadzanie';
 import Dodanie from './komponenty/strony/Dodanie';
@@ -31,6 +32,7 @@ function App() {
           <Route path='/Auta' element={<Auta />} />
           <Route path='/Zwiastun' element={<Zwiastun />} />
           <Route path="/Rezerwacja/:id" element={<Rezerwacja />} />
+          <Route path="/Platnosc" element={<Platnosc />} />
           <Route path = "/Zamowienia"  element={<Zamowienia/>}/>
           <Route path = "/Zarzadzanie" element={<Zarzadzanie/>}/>
           <Route path = "/Dodanie" element={<Dodanie/>}/>

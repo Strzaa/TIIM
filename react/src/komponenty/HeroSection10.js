@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../App.css';
 import { Przycisk } from './Przycisk';
 import './HeroSection.css';
@@ -10,6 +10,7 @@ export default function HeroSection10({ vehicle }) {
   const [dataWypozyczenia, setDataWypozyczenia] = useState('');
   const [iloscDni, setIloscDni] = useState('');
   const pojazd = vehicle[0];
+  const navigate = useNavigate();
 
   const wynajmijPojazd = async () => {
     const token = localStorage.getItem('token');
@@ -36,6 +37,7 @@ export default function HeroSection10({ vehicle }) {
 
       if (response.ok) {
         alert('Pojazd został wynajęty');
+        navigate(`/Platnosc`);
       } else {
         alert('Wystąpił błąd podczas wynajmowania pojazdu');
       }

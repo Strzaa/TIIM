@@ -2,7 +2,7 @@ from django.urls import path
 from .views import DodajPojazd, WyszukiwarkaPojazdow, WylistujMarki, WylistujKategorie, EdytujPojazd, UsunPojazd, \
     Wyloguj, \
     WypozyczPojazd, WyszukajWypozyczenia, WypozyczeniaKlienta, CzyZalogowany, RejestracjaKlienta, \
-    EdytujStatusWypozyczenia, UsunWypozyczenie, JakaGrupa
+    EdytujStatusWypozyczenia, UsunWypozyczenie, JakaGrupa, Oplac
 
 urlpatterns = [
     path('dodaj_pojazd/', DodajPojazd.as_view(), name='dodaj_pojazd'),
@@ -36,7 +36,7 @@ urlpatterns = [
     # curl -X PUT -H "Content-Type: application/json" -d '{"status_wypozyczenia": "Wypożyczony"}' http://localhost:8000/zarzadzanie_pojazdami/edytuj_status_wypozyczenia/1/
     path('usun_wypozyczenie/<int:pk>/', UsunWypozyczenie.as_view(), name='usun_wypozyczenie'),
     #curl -X DELETE -H "Authorization: Token 756842c8f8ae20411579be446c970faa502af17f" http://localhost:8000/zarzadzanie_pojazdami/usun_wypozyczenie/8/
-
+    path('oplac/<int:pk>/', Oplac.as_view(), name='oplac'),
 
     # autoryzacja
     # login

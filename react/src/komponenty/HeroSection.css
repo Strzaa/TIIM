@@ -170,3 +170,74 @@ z-index: -1;
 
 
 }
+
+/* Platność */
+
+/* Platnosc.css */
+
+.platnosc-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.form-container {
+  margin-bottom: 20px;
+  margin-right: 100px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+}
+
+label {
+  margin-top: 10px;
+  color: white; /* Ustawienie koloru tekstu na biały */
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  margin-top: 15px;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  text-align: center;
+  color: white; /* Ustawienie koloru tekstu na biały */
+}
+
+
+/* Wypozyczenia  */
+
+
+.tabelacss {
+  width: 80%; /* Dostosuj szerokość tabeli według potrzeb */
+  margin: auto; /* Wyśrodkowanie tabeli na stronie */
+  border-collapse: collapse;
+}
+
+.tabelacss th, .tabelacss td {
+  border: 1px solid #ddd; /* Dodaj obramowanie dla komórek */
+  padding: 8px; /* Dodaj odstęp wewnątrz komórek */
+  text-align: center; /* Wyśrodkuj tekst w komórkach */
+}
+
+.tabelacss th {
+  background-color: black; /* Kolor tła dla nagłówków */
+}

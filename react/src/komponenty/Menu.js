@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Przycisk } from './Przycisk';
 import './Przycisk.css';
 import './Menu.css';
+import zygzakLogo from './unnamed.png';  // Dodaj import
 
 function Menu() {
   const [klikniecie, stanKlikniecia] = useState(false);
@@ -67,7 +68,7 @@ function Menu() {
       <nav className='menu'>
         <div className='menu-kontener'>
           <Link to='/' className='menu-logo' onClick={zamknijNawigator}>
-            LOGO <i className='link-tekst-menu' />
+          <img src={zygzakLogo} alt='Logo' className='logo-img' /> ZYGZAK <i className='link-tekst-menu' />
           </Link>
           <div className='menu-ikona' onClick={obslugaKlikniecia}>
             <i className={klikniecie ? 'fas fa-times' : 'fas fa-bars'} />

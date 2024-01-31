@@ -38,7 +38,7 @@ export default function HeroSection9() {
             <th>Data wypożyczenia</th>
             <th>Ilość dni</th>
             <th>Status wypożyczenia</th>
-            <th>Czy opłacone</th>
+            {/* <th>Czy opłacone</th> */}
           </tr>
         </thead>
         <tbody>
@@ -49,7 +49,7 @@ export default function HeroSection9() {
               <td>{wypozyczenie.data_wypozyczenia}</td>
               <td>{wypozyczenie.ilosc_dni}</td>
               <td>{wypozyczenie.status_wypozyczenia}</td>
-              <td>{wypozyczenie.czy_oplacone ? 'Tak' : 'Nie'}</td>
+              {/* <td>{wypozyczenie.czy_oplacone ? 'Tak' : 'Nie'}</td> */}
             </tr>
           ))}
         </tbody>

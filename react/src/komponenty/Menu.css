@@ -18,6 +18,12 @@
     max-width: 1500px;
   }
   
+  .logo-img {
+    width: 200px; /* Dostosuj szerokość obrazu */
+    height: 50px; /* Dostosuj wysokość obrazu */
+    margin-right: 30px;
+  }
+
   .menu-logo {
     color: #fff;
     justify-self: start;

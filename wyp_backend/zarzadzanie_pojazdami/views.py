@@ -227,3 +227,12 @@ class JakaGrupa(APIView):
         group_names = [group.name for group in user_groups]
 
         return Response({'grupa': group_names}, status=status.HTTP_200_OK)
+    
+class Oplac(generics.UpdateAPIView):
+    queryset = Wypozyczenie.objects.all()
+    serializer_class = WypozyczenieSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_update(self, serializer):
+        serializer.instance.czy_oplacone = True
+        serializer.instance.save()
