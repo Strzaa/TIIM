@@ -23,7 +23,7 @@ export default function HeroSection5() {
     };
 
     try {
-      const response = await fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/rejestracja/', {
+      const response = await fetch('http://django:8000/zarzadzanie_pojazdami/rejestracja/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -35,7 +35,7 @@ export default function HeroSection12() {
 
   const fetchUserGroup = async (token) => {
     try {
-      const response = await fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/jaka_grupa/', {
+      const response = await fetch('http://django:8000/zarzadzanie_pojazdami/jaka_grupa/', {
         headers: {
           'Authorization': `Token ${token}`
         }
@@ -68,7 +68,7 @@ export default function HeroSection12() {
     });
 
     try {
-      const response = await fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/dodaj_pojazd/', {
+      const response = await fetch('http://django:8000/zarzadzanie_pojazdami/dodaj_pojazd/', {
         method: 'POST',
         headers: {
           'Authorization': `Token ${token}`

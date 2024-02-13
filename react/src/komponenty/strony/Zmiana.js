@@ -13,7 +13,7 @@ export default function Zmiana() {
       navigate('/Logowanie');
       return;
     }
-    fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/czy_zalogowany/', {
+    fetch('http://django:8000/zarzadzanie_pojazdami/czy_zalogowany/', {
       headers: {
         'Authorization': `Token ${token}`
       }
@@ -24,7 +24,7 @@ export default function Zmiana() {
         navigate('/Logowanie');
         return;
       }
-      fetch(`http://20.83.148.157:8000/zarzadzanie_pojazdami/wyszukaj_pojazdy/?format=json&id=${id}`)
+      fetch(`http://django:8000/zarzadzanie_pojazdami/wyszukaj_pojazdy/?format=json&id=${id}`)
         .then(response => response.json())
         .then(data => setVehicle(data))
         .catch(error => console.error('Error:', error));

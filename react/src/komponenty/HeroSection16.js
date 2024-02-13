@@ -32,7 +32,7 @@ export default function HeroSection16({ vehicle }) {
 
   const fetchUserGroup = async (token) => {
     try {
-      const response = await fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/jaka_grupa/', {
+      const response = await fetch('http://django:8000/zarzadzanie_pojazdami/jaka_grupa/', {
         headers: {
           'Authorization': `Token ${token}`
         }
@@ -59,7 +59,7 @@ export default function HeroSection16({ vehicle }) {
     }
 
     try {
-      const response = await fetch(`http://20.83.148.157:8000/zarzadzanie_pojazdami/edytuj_pojazd/${pojazd.nr_rejestracyjny}/`, {
+      const response = await fetch(`http://django:8000/zarzadzanie_pojazdami/edytuj_pojazd/${pojazd.nr_rejestracyjny}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

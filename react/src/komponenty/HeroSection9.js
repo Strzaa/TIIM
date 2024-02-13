@@ -9,7 +9,7 @@ export default function HeroSection9() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/wypozyczenia_klienta/', {
+      fetch('http://django:8000/zarzadzanie_pojazdami/wypozyczenia_klienta/', {
         headers: {
           'Authorization': `Token ${token}`
         }

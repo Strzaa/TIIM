@@ -22,7 +22,7 @@ function Menu() {
 
   const fetchUserGroup = async (token) => {
     try {
-      const response = await fetch('http://20.83.148.157:8000/zarzadzanie_pojazdami/jaka_grupa/', {
+      const response = await fetch('http://django:8000/zarzadzanie_pojazdami/jaka_grupa/', {
         headers: {
           'Authorization': `Token ${token}`
         }
